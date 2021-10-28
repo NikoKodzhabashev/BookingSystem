@@ -1,0 +1,6 @@
+{
+    "*.(js|ts)":[
+         "eslint --fix --cache",
+         "bash -c tsc -p tsconfig.json --noEmit --incremental"
+    ]
+}
