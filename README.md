@@ -2,11 +2,17 @@
 
 ## How to run the project
 
-`yarn start`
+- `yarn`
+- `yarn start`
+- Steps to get PostgreSQL locally [HERE]('https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database')
 
 OR
 
-`docker-compose up`
+- `docker-compose up`
+
+## Database
+
+This project is running over [PostgreSQL]('https://www.postgresql.org/') and [Prisma]('https://www.prisma.io/')
 
 ## Git
 
