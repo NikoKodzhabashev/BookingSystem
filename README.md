@@ -1,5 +1,19 @@
 # BookingSystem
 
+## How to run the project
+
+- `yarn`
+- `yarn start`
+- Steps to get PostgreSQL locally [HERE]('https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database')
+
+OR
+
+- `docker-compose up`
+
+## Database
+
+This project is running over [PostgreSQL]('https://www.postgresql.org/') and [Prisma]('https://www.prisma.io/')
+
 ## Git
 
 This project follows [Conventional Commits]('https://www.conventionalcommits.org/en/v1.0.0/').
