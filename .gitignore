@@ -21,6 +21,3 @@ lerna-debug.log*
 
 # IDE - VSCode
 .vscode/*
-
-# Prisma SQLite
-prisma/dev.db*
