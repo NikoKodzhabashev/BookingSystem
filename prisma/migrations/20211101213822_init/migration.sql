@@ -2,6 +2,8 @@
 CREATE TABLE "Room" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
+    "availableFrom" TIMESTAMP(3) NOT NULL,
+    "availableTo" TIMESTAMP(3) NOT NULL,
     "companyId" INTEGER NOT NULL,
 
     CONSTRAINT "Room_pkey" PRIMARY KEY ("id")
@@ -10,8 +12,8 @@ CREATE TABLE "Room" (
 -- CreateTable
 CREATE TABLE "Booking" (
     "id" SERIAL NOT NULL,
-    "startTime" INTEGER NOT NULL,
-    "endTime" INTEGER NOT NULL,
+    "startTime" TIMESTAMP(3) NOT NULL,
+    "endTime" TIMESTAMP(3) NOT NULL,
     "userId" INTEGER NOT NULL,
     "roomId" INTEGER NOT NULL,
 
@@ -21,8 +23,6 @@ CREATE TABLE "Booking" (
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "fistName" TEXT NOT NULL,
-    "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
 

@@ -29,8 +29,6 @@ model Booking {
 
 model User {
   id       Int       @id @default(autoincrement())
-  fistName String
-  lastName String
   email    String
   password String
   Booking  Booking[]
