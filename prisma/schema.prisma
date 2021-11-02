@@ -14,7 +14,7 @@ model Room {
   availableTo   DateTime
   company       Company   @relation(fields: [companyId], references: [id])
   companyId     Int
-  Booking       Booking[]
+  bookings      Booking[]
 }
 
 model Booking {
@@ -31,11 +31,11 @@ model User {
   id       Int       @id @default(autoincrement())
   email    String    @unique
   password String
-  Booking  Booking[]
+  bookings Booking[]
 }
 
 model Company {
-  id   Int    @id @default(autoincrement())
-  name String
-  Room Room[]
+  id    Int    @id @default(autoincrement())
+  name  String
+  rooms Room[]
 }
