@@ -18,6 +18,6 @@ export default class RoomEntity implements RoomSchema {
   availableTo: Date;
   @ApiProperty()
   companyId: number;
-  @ApiProperty({ type: Booking })
+  @ApiProperty({ type: Booking, isArray: true })
   bookings: Booking[];
 }

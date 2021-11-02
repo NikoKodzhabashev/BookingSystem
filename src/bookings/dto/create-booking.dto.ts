@@ -5,7 +5,7 @@ export class CreateBookingDto {
   @IsNotEmpty()
   @ApiProperty({
     type: Number,
-    description: 'The room ID of the booked room',
+    description: 'Room ID of the booked room',
   })
   roomId: number;
 
