@@ -7,8 +7,8 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import CreateUserDto from './dto/create-user.dto';
-import LoggedUserDto from './dto/logged-user.dto';
 import LoginUserDto from './dto/login-user.dto';
+import UserEntity from './entity/user.entity';
 import { UserService } from './user.service';
 
 @ApiTags('user')
@@ -30,7 +30,7 @@ export class UserController {
   @Post('login')
   @ApiOkResponse({ description: 'The user was successfully fetched.' })
   @ApiBadRequestResponse({ description: 'Bad Request.' })
-  @ApiCreatedResponse({ type: LoggedUserDto })
+  @ApiCreatedResponse({ type: UserEntity })
   async login(@Body() loginUserDto: LoginUserDto) {
     return await this.userService.login(loginUserDto);
   }

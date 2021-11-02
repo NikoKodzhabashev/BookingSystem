@@ -16,8 +16,4 @@ export default class LoginUserDto {
     description: 'Password of the user.',
   })
   password: string;
-
-  constructor(args: LoginUserDto) {
-    Object.assign(this, args);
-  }
 }
