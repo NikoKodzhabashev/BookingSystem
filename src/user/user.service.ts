@@ -8,7 +8,7 @@ import { AuthService } from 'src/auth/auth.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import CreateUserDto from './dto/create-user.dto';
 import LoginUserDto from './dto/login-user.dto';
-import UserEntity from './entity/user.entity';
+import CreatedUserDto from './dto/created-user.dto';
 
 @Injectable()
 export class UserService {
@@ -47,13 +47,12 @@ export class UserService {
     if (!isPasswordValid) {
       throw new UnauthorizedException();
     }
+    const token = await this.authService.generateJwt(user);
 
-    const accessToken = await this.authService.generateJwt({
-      id: user.id,
-      email: user.email,
-    });
-
-    return new UserEntity({ id: user.id, email: user.email, accessToken });
+    return {
+      token,
+      user: new CreatedUserDto({ id: user.id, email: user.email }),
+    };
   }
 
   private getUser(user: Readonly<CreateUserDto>) {

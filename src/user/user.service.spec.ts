@@ -8,13 +8,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from 'src/auth/auth.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import LoggedUserDto from './dto/logged-user.dto';
+import CreatedUserDto from './dto/created-user.dto';
 import { UserService } from './user.service';
 
 describe('UserService', () => {
   let service: UserService;
 
-  const testUser = { email: 'test@example.com', password: '123' };
+  const testUser = { id: 1, email: 'test@example.com', password: '123' };
 
   const mockAuthService = {
     generateJwt: jest.fn(),
@@ -65,14 +65,15 @@ describe('UserService', () => {
 
   describe('Login scenarios', () => {
     it('should return the logged user', async () => {
-      const accessToken = 'token:123321123x112';
+      const token = 'token:123321123x112';
       mockPrismaService.user.findUnique.mockResolvedValue(testUser);
-      mockAuthService.generateJwt.mockResolvedValue(accessToken);
+      mockAuthService.generateJwt.mockResolvedValue(token);
       mockAuthService.comparePasswords.mockResolvedValue(true);
 
-      expect(await service.login(testUser)).toStrictEqual(
-        new LoggedUserDto({ ...testUser, accessToken }),
-      );
+      expect(await service.login(testUser)).toStrictEqual({
+        token,
+        user: new CreatedUserDto({ ...testUser }),
+      });
     });
     it('should throws NotFoundException when there is no user', async () => {
       mockPrismaService.user.findUnique.mockResolvedValue(null);

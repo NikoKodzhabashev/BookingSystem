@@ -42,9 +42,18 @@ async function addCompanies() {
     });
   }
 }
+
+async function addUser() {
+  await prisma.user.create({
+    data: {
+      email: 'admin1@example.com',
+      password: '$2a$12$PDe4PuH0N.2ND9/E1HwWXOTZX2anE06S6iWalR4Ei6BVTw887P5Fe',
+    },
+  });
+}
 async function main() {
   await addCompanies();
-
+  await addUser();
   const companies = await prisma.company.findMany();
 
   companies.map(addRooms);
