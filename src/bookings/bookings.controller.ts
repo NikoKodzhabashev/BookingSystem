@@ -19,6 +19,8 @@ import { BookingsService } from './bookings.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guard';
 import { GetCurrentUser } from 'src/get-user.decorator';
+import ErrorResponseDto from 'src/error-response.dto';
+import CreatedUserDto from 'src/user/dto/created-user.dto';
 
 @ApiTags('bookings')
 @Controller('bookings')
@@ -32,13 +34,16 @@ export class BookingsController {
     description: 'The booking was successfully created.',
   })
   @HttpCode(204)
-  @ApiForbiddenResponse({ description: 'Forbidden.' })
-  @ApiBadRequestResponse({ description: 'Bad Request.' })
+  @ApiForbiddenResponse({ description: 'Forbidden.', type: ErrorResponseDto })
+  @ApiBadRequestResponse({
+    description: 'Bad Request.',
+    type: ErrorResponseDto,
+  })
   create(
-    @GetCurrentUser() userId: number,
+    @GetCurrentUser() user: CreatedUserDto,
     @Body() createBookingDto: CreateBookingDto,
   ) {
-    return this.bookingsService.create(createBookingDto, userId);
+    return this.bookingsService.create(createBookingDto, user.id);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -48,9 +53,12 @@ export class BookingsController {
     description: 'The booking was successfully deleted.',
   })
   @HttpCode(204)
-  @ApiForbiddenResponse({ description: 'Forbidden.' })
-  @ApiBadRequestResponse({ description: 'Bad Request.' })
-  @ApiNotFoundResponse({ description: 'Not Found.' })
+  @ApiForbiddenResponse({ description: 'Forbidden.', type: ErrorResponseDto })
+  @ApiBadRequestResponse({
+    description: 'Bad Request.',
+    type: ErrorResponseDto,
+  })
+  @ApiNotFoundResponse({ description: 'Not Found.', type: ErrorResponseDto })
   remove(@Param('id') id: number) {
     return this.bookingsService.remove(id);
   }

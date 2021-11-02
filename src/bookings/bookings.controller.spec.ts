@@ -55,7 +55,7 @@ describe('BookingsController', () => {
     it('should receive 204 on created booking', async () => {
       mockBookingService.create.mockResolvedValue({});
 
-      return request(app.getHttpServer())
+      request(app.getHttpServer())
         .post('/bookings')
         .send(createBookingDto)
         .expect(204);
