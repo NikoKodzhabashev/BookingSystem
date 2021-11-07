@@ -9,8 +9,9 @@ function buildRooms(company: Company, length = 10): Prisma.RoomCreateInput[] {
           id: company.id,
         },
       },
-      availableFrom: new Date('10/30/2021 10:00:00'),
-      availableTo: new Date('10/30/2021 20:00:00'),
+
+      availableFrom: new Date('2021-11-04T10:00:00Z'),
+      availableTo: new Date('2021-11-04T20:00:00Z'),
     };
   });
 }

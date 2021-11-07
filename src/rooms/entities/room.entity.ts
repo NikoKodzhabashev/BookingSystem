@@ -6,6 +6,10 @@ class Booking {
   startTime: Date;
   @ApiProperty()
   endTime: Date;
+  @ApiProperty()
+  userId: number;
+  @ApiProperty()
+  id: number;
 }
 export default class RoomEntity implements RoomSchema {
   @ApiProperty()
@@ -18,6 +22,6 @@ export default class RoomEntity implements RoomSchema {
   availableTo: Date;
   @ApiProperty()
   companyId: number;
-  @ApiProperty({ type: Booking })
+  @ApiProperty({ type: Booking, isArray: true })
   bookings: Booking[];
 }

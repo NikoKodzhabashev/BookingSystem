@@ -1,4 +1,4 @@
-import { ConflictException } from '@nestjs/common';
+import { BadRequestException, ConflictException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { BookingsService } from './bookings.service';
@@ -17,6 +17,9 @@ describe('BookingsService', () => {
     booking: {
       findFirst: jest.fn(),
       create: jest.fn(),
+    },
+    room: {
+      findFirst: jest.fn(),
     },
   };
   beforeEach(async () => {
@@ -39,8 +42,21 @@ describe('BookingsService', () => {
 
   it('should throws ConflictException when there is no user', async () => {
     mockPrismaService.booking.findFirst.mockResolvedValue(createBookingDto);
+    mockPrismaService.room.findFirst.mockResolvedValue({
+      availableFrom: new Date(1980),
+    });
     await expect(service.create(createBookingDto, 1)).rejects.toThrow(
       ConflictException,
+    );
+  });
+
+  it('should throws BadRequestException when there is no user', async () => {
+    mockPrismaService.booking.findFirst.mockResolvedValue(createBookingDto);
+    mockPrismaService.room.findFirst.mockResolvedValue({
+      availableFrom: new Date(),
+    });
+    await expect(service.create(createBookingDto, 1)).rejects.toThrow(
+      BadRequestException,
     );
   });
 });

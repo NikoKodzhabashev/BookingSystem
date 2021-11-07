@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  Post,
-  Res,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiOkResponse,
@@ -34,10 +26,9 @@ export class UserController {
 
   @Post()
   @ApiResponse({
-    status: 204,
+    status: 201,
     description: 'The user was successfully created.',
   })
-  @HttpCode(204)
   @ApiBadRequestResponse({
     description: 'Bad Request.',
     type: ErrorResponseDto,
@@ -47,7 +38,8 @@ export class UserController {
   }
 
   @Post('login')
-  @ApiOkResponse({
+  @ApiResponse({
+    status: 201,
     description: 'The user was successfully fetched.',
     type: CreatedUserDto,
   })
