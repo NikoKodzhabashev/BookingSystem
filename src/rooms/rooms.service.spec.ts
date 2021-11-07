@@ -31,18 +31,19 @@ describe('RoomsService', () => {
   });
 
   it('should return all rooms from the query', async () => {
+    const companyId = 1;
     const allRooms = [
       {
         id: Math.random(),
         name: 'Test Name',
         availableFrom: new Date(),
         availableTo: new Date(),
-        companyId: 1,
+        companyId,
         bookings: [{ startTime: new Date(), endTime: new Date() }],
       },
     ];
     mockPrismaService.room.findMany.mockReturnValue(allRooms);
 
-    expect(await service.findAll()).toBe(allRooms);
+    expect(await service.findAll(companyId)).toBe(allRooms);
   });
 });

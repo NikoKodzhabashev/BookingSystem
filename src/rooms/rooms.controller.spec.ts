@@ -41,17 +41,18 @@ describe('RoomsController', () => {
   });
 
   it('should get all rooms', async () => {
+    const companyId = 1;
     const allRooms = [
       {
         id: Math.random(),
         name: 'Test Name',
         availableFrom: new Date(),
         availableTo: new Date(),
-        companyId: 1,
+        companyId,
         bookings: [{ startTime: new Date(), endTime: new Date() }],
       },
     ];
     mockedRoomService.findAll.mockReturnValue(allRooms);
-    expect(await controller.findAll()).toBe(allRooms);
+    expect(await controller.findAll(companyId)).toBe(allRooms);
   });
 });

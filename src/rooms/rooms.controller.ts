@@ -1,4 +1,10 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  ParseIntPipe,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import {
   ApiCreatedResponse,
@@ -19,7 +25,7 @@ export class RoomsController {
   @ApiOkResponse({ description: 'Room list was successfully fetched.' })
   @ApiForbiddenResponse({ description: 'Forbidden.' })
   @ApiCreatedResponse({ type: RoomEntity, isArray: true })
-  findAll() {
-    return this.roomsService.findAll();
+  findAll(@Query('company') companyId: number) {
+    return this.roomsService.findAll(companyId);
   }
 }

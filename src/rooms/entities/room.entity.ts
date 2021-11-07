@@ -6,6 +6,10 @@ class Booking {
   startTime: Date;
   @ApiProperty()
   endTime: Date;
+  @ApiProperty()
+  userId: number;
+  @ApiProperty()
+  id: number;
 }
 export default class RoomEntity implements RoomSchema {
   @ApiProperty()

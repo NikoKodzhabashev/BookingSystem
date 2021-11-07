@@ -1,6 +1,5 @@
 import { Booking } from '.prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
-import { convertDateToUTC } from 'src/helpers/date';
 
 export default class BookingEntity implements Omit<Booking, 'id'> {
   @ApiProperty({
@@ -26,8 +25,8 @@ export default class BookingEntity implements Omit<Booking, 'id'> {
   userId: number;
 
   constructor(args: BookingEntity) {
-    this.startTime = convertDateToUTC(args.startTime);
-    this.endTime = convertDateToUTC(args.endTime);
+    this.startTime = args.startTime;
+    this.endTime = args.endTime;
     this.roomId = args.roomId;
     this.userId = args.userId;
   }

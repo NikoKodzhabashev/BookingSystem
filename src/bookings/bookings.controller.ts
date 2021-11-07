@@ -21,6 +21,7 @@ import { JwtAuthGuard } from 'src/auth/jwt/jwt-auth.guard';
 import { GetCurrentUser } from 'src/get-user.decorator';
 import ErrorResponseDto from 'src/error-response.dto';
 import CreatedUserDto from 'src/user/dto/created-user.dto';
+import BookingEntity from './entity/booking.entity';
 
 @ApiTags('bookings')
 @Controller('bookings')
@@ -30,10 +31,10 @@ export class BookingsController {
   @Post()
   @UseGuards(JwtAuthGuard)
   @ApiResponse({
-    status: 204,
+    status: 201,
     description: 'The booking was successfully created.',
+    type: BookingEntity,
   })
-  @HttpCode(204)
   @ApiForbiddenResponse({ description: 'Forbidden.', type: ErrorResponseDto })
   @ApiBadRequestResponse({
     description: 'Bad Request.',
