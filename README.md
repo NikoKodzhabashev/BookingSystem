@@ -14,6 +14,10 @@ OR
 
 This project is running over [PostgreSQL]('https://www.postgresql.org/') and [Prisma]('https://www.prisma.io/')
 
+
+DB seed - `npx prisma db seed`
+DB reset - `npx prisma reset`
+
 ## Git
 
 This project follows [Conventional Commits]('https://www.conventionalcommits.org/en/v1.0.0/').
